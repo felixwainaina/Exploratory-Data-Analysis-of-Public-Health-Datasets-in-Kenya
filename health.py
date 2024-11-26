@@ -39,13 +39,6 @@ st.subheader(f'{selected_indicator} by Region')
 regional_data = cleaned_data[cleaned_data['GHO (DISPLAY)'] == selected_indicator]
 st.bar_chart(regional_data.groupby('REGION (DISPLAY)')['Numeric Value'].mean())
 
-# Correlation Heatmap
-st.subheader('Correlation Heatmap')
-correlation_matrix = cleaned_data.corr()  # Assuming cleaned_data has numerical columns for correlation
-fig, ax = plt.subplots(figsize=(10, 8))
-sns.heatmap(correlation_matrix, annot=True, fmt=".2f", cmap='coolwarm', ax=ax)
-st.pyplot(fig)
-
 # Confidence Interval Output
 ci_low, ci_high = confidence_interval(selected_indicator)
 st.write(f'Confidence Interval for {selected_indicator}: ({ci_low:.2f}, {ci_high:.2f})')
